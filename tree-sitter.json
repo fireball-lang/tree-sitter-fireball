@@ -1,0 +1,39 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "fireball",
+      "camelcase": "Fireball",
+      "title": "Fireball",
+      "scope": "source.fireball",
+      "file-types": [
+        "fb"
+      ],
+      "injection-regex": "^fireball$",
+      "class-name": "TreeSitterFireball"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "General-purpose programming language that compiles to efficient native binaries.",
+    "authors": [
+      {
+        "name": "MineGame159",
+        "email": "petulko08@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/MineGame159/fireball"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
