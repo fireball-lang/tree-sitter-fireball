@@ -55,6 +55,8 @@ module.exports = grammar({
     // Declarations
 
     decl: $ => choice(
+      $.mod,
+      $.import,
       $.struct,
       $.func,
     ),
@@ -73,6 +75,36 @@ module.exports = grammar({
       "[",
       comma_list("attr", $.attribute),
       "]",
+    ),
+
+    mod: $ => seq(
+      "mod",
+      field("path", $.identifier_path),
+      ";",
+    ),
+
+    import: $ => seq(
+      "import",
+      field("path", $.identifier),
+      repeat(seq(
+        "::",
+        choice(
+          field("path", $.identifier),
+          seq(
+            "{",
+            comma_list("symbol", choice(
+              "*",
+              $.identifier,
+            )),
+            "}",
+          ),
+        ),
+      )),
+      optional(seq(
+        "as",
+        field("name", $.identifier),
+      )),
+      ";",
     ),
 
     struct: $ => seq(
@@ -193,7 +225,7 @@ module.exports = grammar({
       $.prefix_expr,
       $.binary_expr,
 
-      $.identifier,
+      $.identifier_path,
       $.index_expr,
       $.member_expr,
       $.call_expr,
@@ -290,7 +322,7 @@ module.exports = grammar({
       field("pointee", $.type),
     ),
 
-    identifier_type: $ => $.identifier,
+    identifier_type: $ => $.identifier_path,
 
     // Other
 
@@ -303,6 +335,14 @@ module.exports = grammar({
     integer: $ => choice(binary_integer, hex_integer, unsigned_integer, signed_integer),
 
     identifier: $ => /[a-zA-Z_][a-zA-Z_0-9]*/,
+
+    identifier_path: $ => seq(
+      $.identifier,
+      repeat(seq(
+        "::",
+        $.identifier,
+      )),
+    ),
 
     comment: $ => token(choice(
       seq("//", /.*/),

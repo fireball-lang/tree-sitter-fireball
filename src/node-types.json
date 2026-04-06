@@ -8,6 +8,14 @@
         "named": true
       },
       {
+        "type": "import",
+        "named": true
+      },
+      {
+        "type": "mod",
+        "named": true
+      },
+      {
         "type": "struct",
         "named": true
       }
@@ -34,7 +42,7 @@
         "named": true
       },
       {
-        "type": "identifier",
+        "type": "identifier_path",
         "named": true
       },
       {
@@ -401,6 +409,21 @@
     }
   },
   {
+    "type": "identifier_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "identifier_type",
     "named": true,
     "fields": {},
@@ -409,7 +432,7 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "identifier_path",
           "named": true
         }
       ]
@@ -445,6 +468,46 @@
         "types": [
           {
             "type": "stmt",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "import",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "path": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "symbol": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "*",
+            "named": false
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -502,6 +565,22 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "mod",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier_path",
             "named": true
           }
         ]
@@ -787,6 +866,10 @@
     "named": false
   },
   {
+    "type": "::",
+    "named": false
+  },
+  {
     "type": ";",
     "named": false
   },
@@ -824,6 +907,10 @@
   },
   {
     "type": "^",
+    "named": false
+  },
+  {
+    "type": "as",
     "named": false
   },
   {
@@ -893,6 +980,14 @@
   },
   {
     "type": "if",
+    "named": false
+  },
+  {
+    "type": "import",
+    "named": false
+  },
+  {
+    "type": "mod",
     "named": false
   },
   {
