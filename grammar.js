@@ -226,6 +226,7 @@ module.exports = grammar({
       $.index_expr,
       $.member_expr,
       $.call_expr,
+      $.cast_expr
     ),
 
     paren_expr: $ => seq(
@@ -242,7 +243,7 @@ module.exports = grammar({
 
     string: $ => string,
 
-    prefix_expr: $ => prec(11, seq(
+    prefix_expr: $ => prec(12, seq(
       choice("-", "!"),
       field("expr", $.expr),
     )),
@@ -256,28 +257,34 @@ module.exports = grammar({
       prec.left(6, seq(field("left", $.expr), "&", field("right", $.expr))),
       prec.left(7, seq(field("left", $.expr), choice("==", "!="), field("right", $.expr))),
       prec.left(8, seq(field("left", $.expr), choice("<", "<=", ">", ">="), field("right", $.expr))),
-      prec.left(9, seq(field("left", $.expr), choice("+", "-"), field("right", $.expr))),
-      prec.left(10, seq(field("left", $.expr), choice("*", "/", "%"), field("right", $.expr))),
+      prec.left(10, seq(field("left", $.expr), choice("+", "-"), field("right", $.expr))),
+      prec.left(11, seq(field("left", $.expr), choice("*", "/", "%"), field("right", $.expr))),
     ),
 
-    index_expr: $ => prec(12, seq(
+    index_expr: $ => prec(13, seq(
       field("expr", $.expr),
       "[",
       field("index", $.expr),
       "]",
     )),
 
-    member_expr: $ => prec(12, seq(
+    member_expr: $ => prec(13, seq(
       field("expr", $.expr),
       ".",
       field("name", $.identifier),
     )),
 
-    call_expr: $ => prec(12, seq(
+    call_expr: $ => prec(13, seq(
       field("callee", $.expr),
       "(",
       comma_list("arg", $.expr),
       ")",
+    )),
+
+    cast_expr: $ => prec(9, seq(
+      field("expr", $.expr),
+      "as",
+      field("type", $.type),
     )),
 
     // Types

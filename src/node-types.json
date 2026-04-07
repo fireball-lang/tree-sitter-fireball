@@ -38,6 +38,10 @@
         "named": true
       },
       {
+        "type": "cast_expr",
+        "named": true
+      },
+      {
         "type": "char",
         "named": true
       },
@@ -275,6 +279,32 @@
         "types": [
           {
             "type": "expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "cast_expr",
+    "named": true,
+    "fields": {
+      "expr": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
             "named": true
           }
         ]
