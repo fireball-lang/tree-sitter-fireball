@@ -82,6 +82,10 @@
         "named": true
       },
       {
+        "type": "postfix_expr",
+        "named": true
+      },
+      {
         "type": "prefix_expr",
         "named": true
       },
@@ -775,6 +779,22 @@
     }
   },
   {
+    "type": "postfix_expr",
+    "named": true,
+    "fields": {
+      "expr": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "prefix_expr",
     "named": true,
     "fields": {
@@ -982,11 +1002,19 @@
     "named": false
   },
   {
+    "type": "++",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
   {
     "type": "-",
+    "named": false
+  },
+  {
+    "type": "--",
     "named": false
   },
   {

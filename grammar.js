@@ -243,6 +243,7 @@ module.exports = grammar({
       $.offsetof,
 
       $.prefix_expr,
+      $.postfix_expr,
       $.binary_expr,
 
       $.identifier_path,
@@ -288,8 +289,13 @@ module.exports = grammar({
     ),
 
     prefix_expr: $ => prec(12, seq(
-      choice("-", "!", "&", "*"),
+      choice("-", "!", "++", "--", "&", "*"),
       field("expr", $.expr),
+    )),
+
+    postfix_expr: $ => prec(13, seq(
+      field("expr", $.expr),
+      choice("++", "--"),
     )),
 
     binary_expr: $ => choice(
@@ -305,20 +311,20 @@ module.exports = grammar({
       prec.left(11, seq(field("left", $.expr), choice("*", "/", "%"), field("right", $.expr))),
     ),
 
-    index_expr: $ => prec(13, seq(
+    index_expr: $ => prec(14, seq(
       field("expr", $.expr),
       "[",
       field("index", $.expr),
       "]",
     )),
 
-    member_expr: $ => prec(13, seq(
+    member_expr: $ => prec(14, seq(
       field("expr", $.expr),
       ".",
       field("name", $.identifier),
     )),
 
-    call_expr: $ => prec(13, seq(
+    call_expr: $ => prec(14, seq(
       field("callee", $.expr),
       "(",
       comma_list("arg", $.expr),
