@@ -299,7 +299,7 @@ module.exports = grammar({
     )),
 
     binary_expr: $ => choice(
-      prec.right(1, seq(field("left", $.expr), "=", field("right", $.expr))),
+      prec.right(1, seq(field("left", $.expr), choice("=", "+=", "-=", "*=", "/=", "%=", "|=", "^=", "&="), field("right", $.expr))),
       prec.left(2, seq(field("left", $.expr), "||", field("right", $.expr))),
       prec.left(3, seq(field("left", $.expr), "&&", field("right", $.expr))),
       prec.left(4, seq(field("left", $.expr), "|", field("right", $.expr))),
