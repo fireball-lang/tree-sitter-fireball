@@ -288,18 +288,18 @@ module.exports = grammar({
       ")",
     ),
 
-    prefix_expr: $ => prec(12, seq(
+    prefix_expr: $ => prec(13, seq(
       choice("-", "!", "++", "--", "&", "*"),
       field("expr", $.expr),
     )),
 
-    postfix_expr: $ => prec(13, seq(
+    postfix_expr: $ => prec(14, seq(
       field("expr", $.expr),
       choice("++", "--"),
     )),
 
     binary_expr: $ => choice(
-      prec.right(1, seq(field("left", $.expr), choice("=", "+=", "-=", "*=", "/=", "%=", "|=", "^=", "&="), field("right", $.expr))),
+      prec.right(1, seq(field("left", $.expr), choice("=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=", "|=", "^=", "&="), field("right", $.expr))),
       prec.left(2, seq(field("left", $.expr), "||", field("right", $.expr))),
       prec.left(3, seq(field("left", $.expr), "&&", field("right", $.expr))),
       prec.left(4, seq(field("left", $.expr), "|", field("right", $.expr))),
@@ -307,24 +307,25 @@ module.exports = grammar({
       prec.left(6, seq(field("left", $.expr), "&", field("right", $.expr))),
       prec.left(7, seq(field("left", $.expr), choice("==", "!="), field("right", $.expr))),
       prec.left(8, seq(field("left", $.expr), choice("<", "<=", ">", ">="), field("right", $.expr))),
-      prec.left(10, seq(field("left", $.expr), choice("+", "-"), field("right", $.expr))),
-      prec.left(11, seq(field("left", $.expr), choice("*", "/", "%"), field("right", $.expr))),
+      prec.left(10, seq(field("left", $.expr), choice("<<", ">>", ">>>"), field("right", $.expr))),
+      prec.left(11, seq(field("left", $.expr), choice("+", "-"), field("right", $.expr))),
+      prec.left(12, seq(field("left", $.expr), choice("*", "/", "%"), field("right", $.expr))),
     ),
 
-    index_expr: $ => prec(14, seq(
+    index_expr: $ => prec(15, seq(
       field("expr", $.expr),
       "[",
       field("index", $.expr),
       "]",
     )),
 
-    member_expr: $ => prec(14, seq(
+    member_expr: $ => prec(15, seq(
       field("expr", $.expr),
       ".",
       field("name", $.identifier),
     )),
 
-    call_expr: $ => prec(14, seq(
+    call_expr: $ => prec(15, seq(
       field("callee", $.expr),
       "(",
       comma_list("arg", $.expr),
