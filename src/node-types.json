@@ -766,6 +766,16 @@
     "type": "pointer_type",
     "named": true,
     "fields": {
+      "mut": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "mut",
+            "named": false
+          }
+        ]
+      },
       "pointee": {
         "multiple": false,
         "required": true,
@@ -1216,6 +1226,10 @@
   },
   {
     "type": "mod",
+    "named": false
+  },
+  {
+    "type": "mut",
     "named": false
   },
   {

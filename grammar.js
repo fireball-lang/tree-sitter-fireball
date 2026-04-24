@@ -374,6 +374,7 @@ module.exports = grammar({
 
     pointer_type: $ => seq(
       "*",
+      field("mut", optional("mut")),
       field("pointee", $.type),
     ),
 
