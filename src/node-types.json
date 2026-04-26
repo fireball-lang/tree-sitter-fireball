@@ -467,12 +467,16 @@
         ]
       },
       "receiver": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "mut",
+            "named": false
           }
         ]
       },

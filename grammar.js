@@ -130,7 +130,10 @@ module.exports = grammar({
       choice(
         comma_list("param", choice($.name_type, "...")),
         seq(
-          field("receiver", $.identifier),
+          field("receiver", seq(
+            optional("mut"),
+            $.identifier,
+          )),
           optional(seq(
             ",",
             comma_list("param", choice($.name_type, "...")),
