@@ -109,6 +109,11 @@ module.exports = grammar({
       field("attr_group", repeat($.attribute_group)),
       "struct",
       field("name", $.identifier),
+      optional(seq(
+        "[",
+        comma_list("type_param", $.identifier),
+        "]",
+      )),
       "{",
       comma_list("field", $.name_type),
       "}",
@@ -116,6 +121,11 @@ module.exports = grammar({
 
     impl: $ => seq(
       "impl",
+      optional(seq(
+        "[",
+        comma_list("type_param", $.identifier),
+        "]",
+      )),
       field("type", $.type),
       "{",
       comma_list("func", $.func),
@@ -126,6 +136,11 @@ module.exports = grammar({
       field("attr_group", repeat($.attribute_group)),
       "func",
       field("name", $.identifier),
+      optional(seq(
+        "[",
+        comma_list("type_param", $.identifier),
+        "]",
+      )),
       "(",
       choice(
         comma_list("param", choice($.name_type, "...")),
@@ -330,6 +345,12 @@ module.exports = grammar({
 
     call_expr: $ => prec(15, seq(
       field("callee", $.expr),
+      optional(seq(
+        "::",
+        "[",
+        comma_list("type_arg", $.type),
+        "]",
+      )),
       "(",
       comma_list("arg", $.expr),
       ")",
@@ -381,7 +402,14 @@ module.exports = grammar({
       field("pointee", $.type),
     ),
 
-    identifier_type: $ => $.identifier_path,
+    identifier_type: $ => prec.left(seq(
+      $.identifier_path,
+      optional(seq(
+        "[",
+        comma_list("type_arg", $.type),
+        "]",
+      )),
+    )),
 
     // Other
 
@@ -395,13 +423,13 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z_][a-zA-Z_0-9]*/,
 
-    identifier_path: $ => seq(
+    identifier_path: $ => prec.left(seq(
       $.identifier,
       repeat(seq(
         "::",
         $.identifier,
       )),
-    ),
+    )),
 
     comment: $ => token(choice(
       seq("//", /.*/),
