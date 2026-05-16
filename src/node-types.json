@@ -383,6 +383,32 @@
     }
   },
   {
+    "type": "field",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "for",
     "named": true,
     "fields": {
@@ -471,7 +497,7 @@
             "named": false
           },
           {
-            "type": "name_type",
+            "type": "param",
             "named": true
           }
         ]
@@ -735,10 +761,15 @@
     }
   },
   {
-    "type": "name_type",
+    "type": "number",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "offsetof",
     "named": true,
     "fields": {
-      "name": {
+      "field": {
         "multiple": false,
         "required": true,
         "types": [
@@ -761,15 +792,10 @@
     }
   },
   {
-    "type": "number",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "offsetof",
+    "type": "param",
     "named": true,
     "fields": {
-      "field": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -937,7 +963,7 @@
         "required": false,
         "types": [
           {
-            "type": "name_type",
+            "type": "field",
             "named": true
           }
         ]
@@ -1293,6 +1319,10 @@
   },
   {
     "type": "offsetof",
+    "named": false
+  },
+  {
+    "type": "pub",
     "named": false
   },
   {

@@ -107,6 +107,7 @@ module.exports = grammar({
 
     struct: $ => seq(
       field("attr_group", repeat($.attribute_group)),
+      optional("pub"),
       "struct",
       field("name", $.identifier),
       optional(seq(
@@ -115,8 +116,15 @@ module.exports = grammar({
         "]",
       )),
       "{",
-      comma_list("field", $.name_type),
+      comma_list("field", $.field),
       "}",
+    ),
+
+    field: $ => seq(
+      optional("pub"),
+      field("name", $.identifier),
+      ":",
+      field("type", $.type),
     ),
 
     impl: $ => seq(
@@ -134,6 +142,7 @@ module.exports = grammar({
 
     func: $ => seq(
       field("attr_group", repeat($.attribute_group)),
+      optional("pub"),
       "func",
       field("name", $.identifier),
       optional(seq(
@@ -143,7 +152,7 @@ module.exports = grammar({
       )),
       "(",
       choice(
-        comma_list("param", choice($.name_type, "...")),
+        comma_list("param", choice($.param, "...")),
         seq(
           field("receiver", seq(
             optional("mut"),
@@ -151,13 +160,19 @@ module.exports = grammar({
           )),
           optional(seq(
             ",",
-            comma_list("param", choice($.name_type, "...")),
+            comma_list("param", choice($.param, "...")),
           )),
         ),
       ),
       ")",
       field("returns", optional($.type)),
       field("body", optional($.block)),
+    ),
+
+    param: $ => seq(
+      field("name", $.identifier),
+      ":",
+      field("type", $.type),
     ),
 
     // Statements
@@ -412,12 +427,6 @@ module.exports = grammar({
     )),
 
     // Other
-
-    name_type: $ => seq(
-      field("name", $.identifier),
-      ":",
-      field("type", $.type),
-    ),
 
     integer: $ => choice(binary_integer, hex_integer, unsigned_integer, signed_integer),
 
