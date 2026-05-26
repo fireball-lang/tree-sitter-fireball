@@ -58,6 +58,7 @@ module.exports = grammar({
       $.mod,
       $.import,
       $.struct,
+      $.interface,
       $.impl,
       $.func,
     ),
@@ -127,6 +128,20 @@ module.exports = grammar({
       field("type", $.type),
     ),
 
+    interface: $ => seq(
+      optional("pub"),
+      "interface",
+      field("name", $.identifier),
+      optional(seq(
+        "[",
+        comma_list("type_param", $.identifier),
+        "]",
+      )),
+      "{",
+      comma_list("func", $.func),
+      "}",
+    ),
+
     impl: $ => seq(
       "impl",
       optional(seq(
@@ -135,6 +150,10 @@ module.exports = grammar({
         "]",
       )),
       field("type", $.type),
+      optional(seq(
+        ":",
+        field("interface", $.identifier_path),
+      )),
       "{",
       comma_list("func", $.func),
       "}",

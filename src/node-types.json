@@ -16,6 +16,10 @@
         "named": true
       },
       {
+        "type": "interface",
+        "named": true
+      },
+      {
         "type": "mod",
         "named": true
       },
@@ -629,6 +633,16 @@
           }
         ]
       },
+      "interface": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier_path",
+            "named": true
+          }
+        ]
+      },
       "type": {
         "multiple": false,
         "required": true,
@@ -717,6 +731,42 @@
     "type": "integer",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "interface",
+    "named": true,
+    "fields": {
+      "func": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "func",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type_param": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "member_expr",
@@ -1303,6 +1353,10 @@
   },
   {
     "type": "import",
+    "named": false
+  },
+  {
+    "type": "interface",
     "named": false
   },
   {
