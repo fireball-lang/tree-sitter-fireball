@@ -152,7 +152,7 @@ module.exports = grammar({
       field("type", $.type),
       optional(seq(
         ":",
-        field("interface", $.identifier_path),
+        field("interface", $.identifier_type),
       )),
       "{",
       comma_list("func", $.func),

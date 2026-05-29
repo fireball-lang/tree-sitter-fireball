@@ -834,7 +834,7 @@
                   "name": "interface",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "identifier_path"
+                    "name": "identifier_type"
                   }
                 }
               ]
