@@ -158,6 +158,10 @@
         "named": true
       },
       {
+        "type": "mutable_identifier_type",
+        "named": true
+      },
+      {
         "type": "pointer_type",
         "named": true
       },
@@ -804,6 +808,22 @@
         "types": [
           {
             "type": "identifier_path",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "mutable_identifier_type",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier_type",
             "named": true
           }
         ]
