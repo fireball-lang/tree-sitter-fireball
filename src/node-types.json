@@ -158,10 +158,6 @@
         "named": true
       },
       {
-        "type": "mutable_identifier_type",
-        "named": true
-      },
-      {
         "type": "pointer_type",
         "named": true
       },
@@ -565,6 +561,16 @@
     "type": "identifier_type",
     "named": true,
     "fields": {
+      "mut": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "mut",
+            "named": false
+          }
+        ]
+      },
       "type_arg": {
         "multiple": true,
         "required": false,
@@ -808,22 +814,6 @@
         "types": [
           {
             "type": "identifier_path",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "mutable_identifier_type",
-    "named": true,
-    "fields": {
-      "type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier_type",
             "named": true
           }
         ]

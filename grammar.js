@@ -403,7 +403,6 @@ module.exports = grammar({
       $.array_type,
       $.pointer_type,
       $.identifier_type,
-      $.mutable_identifier_type,
     ),
 
     primitive_type: $ => choice(
@@ -432,23 +431,19 @@ module.exports = grammar({
     ),
 
     pointer_type: $ => prec.left(0, seq(
-      "*",
       field("mut", optional("mut")),
+      "*",
       field("pointee", $.type),
     )),
 
     identifier_type: $ => prec.left(seq(
+      field("mut", optional("mut")),
       $.identifier_path,
       optional(seq(
         "[",
         comma_list("type_arg", $.type),
         "]",
       )),
-    )),
-
-    mutable_identifier_type: $ => prec.left(1, seq(
-      "mut",
-      field("type", $.identifier_type),
     )),
 
     // Other
