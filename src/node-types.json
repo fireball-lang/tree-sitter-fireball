@@ -535,7 +535,7 @@
         "required": false,
         "types": [
           {
-            "type": "identifier",
+            "type": "type_param",
             "named": true
           }
         ]
@@ -668,7 +668,7 @@
         "required": false,
         "types": [
           {
-            "type": "identifier",
+            "type": "type_param",
             "named": true
           }
         ]
@@ -771,7 +771,7 @@
         "required": false,
         "types": [
           {
-            "type": "identifier",
+            "type": "type_param",
             "named": true
           }
         ]
@@ -1041,6 +1041,32 @@
       "type_param": {
         "multiple": true,
         "required": false,
+        "types": [
+          {
+            "type": "type_param",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "type_param",
+    "named": true,
+    "fields": {
+      "constraint": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
         "types": [
           {
             "type": "identifier",

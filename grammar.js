@@ -113,7 +113,7 @@ module.exports = grammar({
       field("name", $.identifier),
       optional(seq(
         "[",
-        comma_list("type_param", $.identifier),
+        comma_list("type_param", $.type_param),
         "]",
       )),
       "{",
@@ -134,7 +134,7 @@ module.exports = grammar({
       field("name", $.identifier),
       optional(seq(
         "[",
-        comma_list("type_param", $.identifier),
+        comma_list("type_param", $.type_param),
         "]",
       )),
       "{",
@@ -146,7 +146,7 @@ module.exports = grammar({
       "impl",
       optional(seq(
         "[",
-        comma_list("type_param", $.identifier),
+        comma_list("type_param", $.type_param),
         "]",
       )),
       field("type", $.type),
@@ -166,7 +166,7 @@ module.exports = grammar({
       field("name", $.identifier),
       optional(seq(
         "[",
-        comma_list("type_param", $.identifier),
+        comma_list("type_param", $.type_param),
         "]",
       )),
       "(",
@@ -192,6 +192,14 @@ module.exports = grammar({
       field("name", $.identifier),
       ":",
       field("type", $.type),
+    ),
+
+    type_param: $ => seq(
+      field("name", $.identifier),
+      optional(seq(
+        ":",
+        field("constraint", $.type),
+      )),
     ),
 
     // Statements
