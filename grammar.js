@@ -199,6 +199,10 @@ module.exports = grammar({
       optional(seq(
         ":",
         field("constraint", $.type),
+        repeat(seq(
+          "+",
+          field("constraint", $.type),
+        )),
       )),
     ),
 
