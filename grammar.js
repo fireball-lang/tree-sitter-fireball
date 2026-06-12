@@ -58,6 +58,7 @@ module.exports = grammar({
       $.mod,
       $.import,
       $.struct,
+      $.enum,
       $.interface,
       $.impl,
       $.func,
@@ -126,6 +127,28 @@ module.exports = grammar({
       field("name", $.identifier),
       ":",
       field("type", $.type),
+    ),
+
+    enum: $ => seq(
+      field("attr_group", repeat($.attribute_group)),
+      optional("pub"),
+      "enum",
+      field("name", $.identifier),
+      optional(seq(
+        ":",
+        field("type", $.type),
+      )),
+      "{",
+      comma_list("case", $.case),
+      "}",
+    ),
+
+    case: $ => seq(
+      field("name", $.identifier),
+      optional(seq(
+        "=",
+        field("value", $.integer),
+      )),
     ),
 
     interface: $ => seq(

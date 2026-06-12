@@ -4,6 +4,10 @@
     "named": true,
     "subtypes": [
       {
+        "type": "enum",
+        "named": true
+      },
+      {
         "type": "func",
         "named": true
       },
@@ -340,6 +344,32 @@
     }
   },
   {
+    "type": "case",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "integer",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "cast_expr",
     "named": true,
     "fields": {
@@ -369,6 +399,52 @@
     "type": "continue",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "enum",
+    "named": true,
+    "fields": {
+      "attr_group": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_group",
+            "named": true
+          }
+        ]
+      },
+      "case": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "case",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "expression",
@@ -1337,6 +1413,10 @@
   },
   {
     "type": "else",
+    "named": false
+  },
+  {
+    "type": "enum",
     "named": false
   },
   {
