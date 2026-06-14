@@ -104,6 +104,10 @@
       {
         "type": "string",
         "named": true
+      },
+      {
+        "type": "struct_initializer",
+        "named": true
       }
     ]
   },
@@ -482,6 +486,32 @@
         "types": [
           {
             "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "field_initializer",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
             "named": true
           }
         ]
@@ -1120,6 +1150,42 @@
         "types": [
           {
             "type": "type_param",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "struct_initializer",
+    "named": true,
+    "fields": {
+      "field": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "field_initializer",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier_path",
+            "named": true
+          }
+        ]
+      },
+      "type_arg": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "type",
             "named": true
           }
         ]

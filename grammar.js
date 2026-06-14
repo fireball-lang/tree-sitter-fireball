@@ -42,6 +42,10 @@ module.exports = grammar({
     $.comment,
   ],
 
+  conflicts: $ => [
+    [$.expr, $.struct_initializer],
+  ],
+
   supertypes: $ => [
     $.decl,
     $.stmt,
@@ -325,6 +329,8 @@ module.exports = grammar({
       $.string,
       $.null_expr,
 
+      $.struct_initializer,
+
       $.sizeof,
       $.alignof,
       $.offsetof,
@@ -351,6 +357,25 @@ module.exports = grammar({
     char: $ => char,
     string: $ => string,
     null_expr: $ => "null",
+
+    struct_initializer: $ => seq(
+      field("type", $.identifier_path),
+      optional(seq(
+        "::",
+        "[",
+        comma_list("type_arg", $.type),
+        "]",
+      )),
+      "{",
+      comma_list("field", $.field_initializer),
+      "}",
+    ),
+
+    field_initializer: $ => seq(
+      field("name", $.identifier),
+      ":",
+      field("value", $.expr),
+    ),
 
     sizeof: $ => seq(
       "sizeof",
