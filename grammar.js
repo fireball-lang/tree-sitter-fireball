@@ -330,6 +330,7 @@ module.exports = grammar({
       $.null_expr,
 
       $.struct_initializer,
+      $.array_initializer,
 
       $.sizeof,
       $.alignof,
@@ -375,6 +376,13 @@ module.exports = grammar({
       field("name", $.identifier),
       ":",
       field("value", $.expr),
+    ),
+
+    array_initializer: $ => seq(
+      field("type", $.array_type),
+      "{",
+      comma_list("element", $.expr),
+      "}",
     ),
 
     sizeof: $ => seq(

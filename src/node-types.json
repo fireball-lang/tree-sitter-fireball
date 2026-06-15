@@ -42,6 +42,10 @@
         "named": true
       },
       {
+        "type": "array_initializer",
+        "named": true
+      },
+      {
         "type": "binary_expr",
         "named": true
       },
@@ -185,6 +189,32 @@
         "types": [
           {
             "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "array_initializer",
+    "named": true,
+    "fields": {
+      "element": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_type",
             "named": true
           }
         ]
