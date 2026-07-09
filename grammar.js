@@ -20,6 +20,27 @@ function comma_list(field_name, rule) {
   ))
 }
 
+/**
+ * @param field_name1 {string}
+ * @param rule1 {RuleOrLiteral}
+ * @param field_name2 {string}
+ * @param rule2 {RuleOrLiteral}
+ * @returns {ChoiceRule}
+ */
+function comma_list_choice(field_name1, rule1, field_name2, rule2) {
+  return optional(seq(
+    choice(
+      field(field_name1, rule1),
+      field(field_name2, rule2),
+    ),
+    repeat(seq(",", choice(
+      field(field_name1, rule1),
+      field(field_name2, rule2),
+    ))),
+    optional(","),
+  ))
+}
+
 const binary_integer = /0[bB][01]+/
 const hex_integer = /0[xX][0-9a-fA-F]+/
 
@@ -165,7 +186,10 @@ module.exports = grammar({
         "]",
       )),
       "{",
-      comma_list("func", $.func),
+      comma_list_choice(
+        "assoc_type", $.associated_type,
+        "func", $.func,
+      ),
       "}",
     ),
 
@@ -182,8 +206,21 @@ module.exports = grammar({
         field("interface", $.identifier_type),
       )),
       "{",
-      comma_list("func", $.func),
+      comma_list_choice(
+        "assoc_type", $.associated_type,
+        "func", $.func,
+      ),
       "}",
+    ),
+
+    associated_type: $ => seq(
+      "type",
+      field("name", $.identifier),
+      optional(seq(
+        "=",
+        field("type", $.type),
+      )),
+      ";",
     ),
 
     func: $ => seq(
