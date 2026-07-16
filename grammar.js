@@ -68,22 +68,6 @@ module.exports = grammar({
       $.func,
     ),
 
-    attribute: $ => seq(
-      field("name", $.identifier),
-      optional(seq(
-        "(",
-        comma_list("arg", $.expr),
-        ")",
-      )),
-    ),
-
-    attribute_group: $ => seq(
-      "#",
-      "[",
-      comma_list("attr", $.attribute),
-      "]",
-    ),
-
     mod: $ => seq(
       "mod",
       field("path", $.identifier_path),
@@ -156,6 +140,7 @@ module.exports = grammar({
     ),
 
     interface: $ => seq(
+      field("attr_group", repeat($.attribute_group)),
       optional("pub"),
       "interface",
       field("name", $.identifier),
@@ -173,6 +158,7 @@ module.exports = grammar({
     ),
 
     impl: $ => seq(
+      field("attr_group", repeat($.attribute_group)),
       "impl",
       optional(seq(
         "[",
@@ -528,6 +514,41 @@ module.exports = grammar({
         "]",
       )),
     )),
+
+    // Attributes
+
+    attribute_group: $ => seq(
+      "#",
+      "[",
+      comma_list("attr", $.attribute),
+      "]",
+    ),
+
+    attribute: $ => choice(
+      $.test_attribute,
+      $.extern_attribute,
+      $.link_name_attribute,
+    ),
+
+    test_attribute: $ => seq(
+      "test",
+      optional(seq(
+        "(",
+        field("name", $.string),
+        ")",
+      )),
+    ),
+
+    extern_attribute: $ => "extern",
+
+    link_name_attribute: $ => seq(
+      "link_name",
+      seq(
+        "(",
+        field("name", $.string),
+        ")",
+      ),
+    ),
 
     // Other
 

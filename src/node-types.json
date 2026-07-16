@@ -276,27 +276,24 @@
   {
     "type": "attribute",
     "named": true,
-    "fields": {
-      "arg": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "expr",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "extern_attribute",
+          "named": true
+        },
+        {
+          "type": "link_name_attribute",
+          "named": true
+        },
+        {
+          "type": "test_attribute",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -805,6 +802,16 @@
           }
         ]
       },
+      "attr_group": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_group",
+            "named": true
+          }
+        ]
+      },
       "func": {
         "multiple": true,
         "required": false,
@@ -928,6 +935,16 @@
           }
         ]
       },
+      "attr_group": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_group",
+            "named": true
+          }
+        ]
+      },
       "func": {
         "multiple": true,
         "required": false,
@@ -954,6 +971,22 @@
         "types": [
           {
             "type": "type_param",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "link_name_attribute",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
             "named": true
           }
         ]
@@ -1269,6 +1302,22 @@
     }
   },
   {
+    "type": "test_attribute",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "type_param",
     "named": true,
     "fields": {
@@ -1562,6 +1611,10 @@
     "named": false
   },
   {
+    "type": "extern_attribute",
+    "named": true
+  },
+  {
     "type": "f32",
     "named": false
   },
@@ -1618,6 +1671,10 @@
     "named": false
   },
   {
+    "type": "link_name",
+    "named": false
+  },
+  {
     "type": "mod",
     "named": false
   },
@@ -1651,6 +1708,10 @@
   },
   {
     "type": "struct",
+    "named": false
+  },
+  {
+    "type": "test",
     "named": false
   },
   {
