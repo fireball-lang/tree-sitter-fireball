@@ -1991,27 +1991,27 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "0[bB][01]+"
+          "value": "0[bB][01_]+"
         },
         {
           "type": "PATTERN",
-          "value": "0[xX][0-9a-fA-F]+"
+          "value": "0[xX][0-9a-fA-F_]+"
         },
         {
           "type": "PATTERN",
-          "value": "[0-9]+[uU]"
+          "value": "[0-9_]+[uU]"
         },
         {
           "type": "PATTERN",
-          "value": "[0-9]+"
+          "value": "[0-9_]+"
         },
         {
           "type": "PATTERN",
-          "value": "[0-9]+\\.[0-9]+[fF]"
+          "value": "[0-9_]+\\.[0-9_]+[fF]"
         },
         {
           "type": "PATTERN",
-          "value": "[0-9]+\\.[0-9]+"
+          "value": "[0-9_]+\\.[0-9_]+"
         }
       ]
     },
@@ -3370,19 +3370,19 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "0[bB][01]+"
+          "value": "0[bB][01_]+"
         },
         {
           "type": "PATTERN",
-          "value": "0[xX][0-9a-fA-F]+"
+          "value": "0[xX][0-9a-fA-F_]+"
         },
         {
           "type": "PATTERN",
-          "value": "[0-9]+[uU]"
+          "value": "[0-9_]+[uU]"
         },
         {
           "type": "PATTERN",
-          "value": "[0-9]+"
+          "value": "[0-9_]+"
         }
       ]
     },
