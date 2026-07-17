@@ -552,7 +552,7 @@ module.exports = grammar({
     cfg_attribute: $ => seq(
       "cfg",
       "(",
-      field("predicate", $.cfg_attribute),
+      field("predicate", $.cfg_predicate),
       ")",
     ),
 

@@ -3404,7 +3404,7 @@
           "name": "predicate",
           "content": {
             "type": "SYMBOL",
-            "name": "cfg_attribute"
+            "name": "cfg_predicate"
           }
         },
         {
