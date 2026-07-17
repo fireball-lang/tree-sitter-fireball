@@ -282,6 +282,10 @@
       "required": true,
       "types": [
         {
+          "type": "cfg_attribute",
+          "named": true
+        },
+        {
           "type": "extern_attribute",
           "named": true
         },
@@ -446,6 +450,22 @@
         "types": [
           {
             "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "cfg_attribute",
+    "named": true,
+    "fields": {
+      "predicate": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "cfg_attribute",
             "named": true
           }
         ]
@@ -1587,6 +1607,10 @@
   },
   {
     "type": "break",
+    "named": false
+  },
+  {
+    "type": "cfg",
     "named": false
   },
   {

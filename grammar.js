@@ -528,6 +528,7 @@ module.exports = grammar({
       $.test_attribute,
       $.extern_attribute,
       $.link_name_attribute,
+      $.cfg_attribute,
     ),
 
     test_attribute: $ => seq(
@@ -543,11 +544,36 @@ module.exports = grammar({
 
     link_name_attribute: $ => seq(
       "link_name",
-      seq(
-        "(",
-        field("name", $.string),
-        ")",
-      ),
+      "(",
+      field("name", $.string),
+      ")",
+    ),
+
+    cfg_attribute: $ => seq(
+      "cfg",
+      "(",
+      field("predicate", $.cfg_attribute),
+      ")",
+    ),
+
+    // Cfg Predicates
+
+    cfg_predicate: $ => choice(
+      $.option_cfg,
+      $.call_cfg,
+    ),
+
+    option_cfg: $ => seq(
+      field("name", $.identifier),
+      "=",
+      field("value", $.string),
+    ),
+
+    call_cfg: $ => seq(
+      field("name", $.identifier),
+      "(",
+      comma_list("predicate", $.cfg_predicate),
+      ")",
     ),
 
     // Other
