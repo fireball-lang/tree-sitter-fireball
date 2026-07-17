@@ -923,6 +923,16 @@
     "type": "import",
     "named": true,
     "fields": {
+      "attr_group": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_group",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": false,
@@ -1088,6 +1098,16 @@
     "type": "mod",
     "named": true,
     "fields": {
+      "attr_group": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_group",
+            "named": true
+          }
+        ]
+      },
       "path": {
         "multiple": false,
         "required": true,

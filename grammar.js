@@ -69,12 +69,14 @@ module.exports = grammar({
     ),
 
     mod: $ => seq(
+      field("attr_group", repeat($.attribute_group)),
       "mod",
       field("path", $.identifier_path),
       ";",
     ),
 
     import: $ => seq(
+      field("attr_group", repeat($.attribute_group)),
       "import",
       field("path", $.identifier),
       repeat(seq(
