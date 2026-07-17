@@ -565,7 +565,10 @@ module.exports = grammar({
 
     option_cfg: $ => seq(
       field("name", $.identifier),
-      "=",
+      choice(
+        "=",
+        "!=",
+      ),
       field("value", $.string),
     ),
 
