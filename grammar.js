@@ -65,6 +65,7 @@ module.exports = grammar({
       $.enum,
       $.interface,
       $.impl,
+      $.global_var,
       $.func,
     ),
 
@@ -187,6 +188,16 @@ module.exports = grammar({
         "=",
         field("type", $.type),
       )),
+    ),
+
+    global_var: $ => seq(
+      field("attr_group", repeat($.attribute_group)),
+      optional("pub"),
+      "var",
+      field("name", $.identifier),
+      ":",
+      field("type", $.type),
+      ";",
     ),
 
     func: $ => seq(

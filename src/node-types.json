@@ -12,6 +12,10 @@
         "named": true
       },
       {
+        "type": "global_var",
+        "named": true
+      },
+      {
         "type": "impl",
         "named": true
       },
@@ -760,6 +764,42 @@
         "types": [
           {
             "type": "type_param",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "global_var",
+    "named": true,
+    "fields": {
+      "attr_group": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_group",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
             "named": true
           }
         ]
