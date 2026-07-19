@@ -553,11 +553,14 @@ module.exports = grammar({
     ),
 
     attribute: $ => choice(
+      $.init_attribute,
       $.test_attribute,
       $.extern_attribute,
       $.link_name_attribute,
       $.cfg_attribute,
     ),
+
+    init_attribute: $ => "init",
 
     test_attribute: $ => seq(
       "test",

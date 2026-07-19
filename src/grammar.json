@@ -3505,6 +3505,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "init_attribute"
+        },
+        {
+          "type": "SYMBOL",
           "name": "test_attribute"
         },
         {
@@ -3520,6 +3524,10 @@
           "name": "cfg_attribute"
         }
       ]
+    },
+    "init_attribute": {
+      "type": "STRING",
+      "value": "init"
     },
     "test_attribute": {
       "type": "SEQ",

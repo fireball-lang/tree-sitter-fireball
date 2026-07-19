@@ -298,6 +298,10 @@
           "named": true
         },
         {
+          "type": "init_attribute",
+          "named": true
+        },
+        {
           "type": "link_name_attribute",
           "named": true
         },
@@ -1854,6 +1858,10 @@
   {
     "type": "import",
     "named": false
+  },
+  {
+    "type": "init_attribute",
+    "named": true
   },
   {
     "type": "interface",
