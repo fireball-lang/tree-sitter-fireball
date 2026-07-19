@@ -170,6 +170,10 @@
         "named": true
       },
       {
+        "type": "func_type",
+        "named": true
+      },
+      {
         "type": "identifier_type",
         "named": true
       },
@@ -771,6 +775,36 @@
     }
   },
   {
+    "type": "func_type",
+    "named": true,
+    "fields": {
+      "param": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "...",
+            "named": false
+          },
+          {
+            "type": "param",
+            "named": true
+          }
+        ]
+      },
+      "returns": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "global_var",
     "named": true,
     "fields": {
@@ -1223,7 +1257,7 @@
     "fields": {
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",

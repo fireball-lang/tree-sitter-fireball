@@ -188,6 +188,7 @@ module.exports = grammar({
         "=",
         field("type", $.type),
       )),
+      ";",
     ),
 
     global_var: $ => seq(
@@ -226,12 +227,17 @@ module.exports = grammar({
       ),
       ")",
       field("returns", optional($.type)),
-      field("body", optional($.block)),
+      choice(
+        field("body", $.block),
+        ";",
+      ),
     ),
 
     param: $ => seq(
-      field("name", $.identifier),
-      ":",
+      optional(seq(
+        field("name", $.identifier),
+        ":",
+      )),
       field("type", $.type),
     ),
 
@@ -484,6 +490,7 @@ module.exports = grammar({
       $.primitive_type,
       $.array_type,
       $.pointer_type,
+      $.func_type,
       $.identifier_type,
     ),
 
@@ -517,6 +524,14 @@ module.exports = grammar({
       "*",
       field("pointee", $.type),
     )),
+
+    func_type: $ => seq(
+      "func",
+      "(",
+      comma_list("param", choice($.param, "...")),
+      ")",
+      field("returns", $.type),
+    ),
 
     identifier_type: $ => prec.left(seq(
       field("mut", optional("mut")),
