@@ -178,6 +178,10 @@
         "named": true
       },
       {
+        "type": "option_type",
+        "named": true
+      },
+      {
         "type": "pointer_type",
         "named": true
       },
@@ -1285,6 +1289,22 @@
     }
   },
   {
+    "type": "option_type",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "param",
     "named": true,
     "fields": {
@@ -1800,6 +1820,10 @@
     "named": false
   },
   {
+    "type": "?",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -1938,6 +1962,10 @@
   },
   {
     "type": "offsetof",
+    "named": false
+  },
+  {
+    "type": "or",
     "named": false
   },
   {

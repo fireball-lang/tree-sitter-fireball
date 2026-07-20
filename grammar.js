@@ -454,7 +454,7 @@ module.exports = grammar({
 
     postfix_expr: $ => prec(14, seq(
       field("expr", $.expr),
-      choice("++", "--"),
+      choice("++", "--", "?"),
     )),
 
     binary_expr: $ => choice(
@@ -466,6 +466,7 @@ module.exports = grammar({
       prec.left(6, seq(field("left", $.expr), "&", field("right", $.expr))),
       prec.left(7, seq(field("left", $.expr), choice("==", "!="), field("right", $.expr))),
       prec.left(8, seq(field("left", $.expr), choice("<", "<=", ">", ">="), field("right", $.expr))),
+      prec.left(9, seq(field("left", $.expr), "or", field("right", $.expr))),
       prec.left(10, seq(field("left", $.expr), choice("<<", ">>", ">>>"), field("right", $.expr))),
       prec.left(11, seq(field("left", $.expr), choice("+", "-"), field("right", $.expr))),
       prec.left(12, seq(field("left", $.expr), choice("*", "/", "%"), field("right", $.expr))),
@@ -507,6 +508,7 @@ module.exports = grammar({
       $.pointer_type,
       $.func_type,
       $.identifier_type,
+      $.option_type,
     ),
 
     primitive_type: $ => choice(
@@ -552,6 +554,11 @@ module.exports = grammar({
       field("mut", optional("mut")),
       field("path", identifier_path($.identifier, $.type, false)),
     )),
+
+    option_type: $ => seq(
+      "?",
+      field("type", $.type),
+    ),
 
     // Attributes
 
