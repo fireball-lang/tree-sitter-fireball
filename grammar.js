@@ -1,22 +1,50 @@
-/**
- * @file General-purpose programming language that compiles to efficient native binaries.
- * @author MineGame159 <petulko08@gmail.com>
- * @license MIT
- */
 
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
 /**
- * @param field_name {string}
- * @param rule {RuleOrLiteral}
- * @returns {ChoiceRule}
+ * @param {string} field_name
+ * @param {RuleOrLiteral} rule
+ * @returns {RuleOrLiteral}
  */
 function comma_list(field_name, rule) {
+  const item = field_name !== "" ? field(field_name, rule) : rule;
+
   return optional(seq(
-    field(field_name, rule),
-    repeat(seq(",", field(field_name, rule))),
+    item,
+    repeat(item),
     optional(","),
+  ))
+}
+
+/**
+ * @param {RuleOrLiteral} identifier
+ * @returns {RuleOrLiteral}
+ */
+function path(identifier) {
+    return seq(
+      identifier,
+      repeat(seq(
+        "::",
+        identifier,
+      )),
+    )
+}
+
+/**
+ * @param {RuleOrLiteral} identifier
+ * @param {RuleOrLiteral} type
+ * @param {any} typeParamsRequireTurbofish
+ * @returns {RuleOrLiteral}
+ */
+function identifier_path(identifier, type, typeParamsRequireTurbofish) {
+  return path(seq(
+    identifier,
+    optional(seq(
+      typeParamsRequireTurbofish ? seq(":", "[") : "[",
+      comma_list("", type),
+      "]",
+    )),
   ))
 }
 
@@ -43,7 +71,7 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$.expr, $.struct_initializer],
+    [$.expr, $.array_type],
   ],
 
   supertypes: $ => [
@@ -72,24 +100,19 @@ module.exports = grammar({
     mod: $ => seq(
       field("attr_group", repeat($.attribute_group)),
       "mod",
-      field("path", $.identifier_path),
+      field("path", path($.identifier)),
       ";",
     ),
 
     import: $ => seq(
       field("attr_group", repeat($.attribute_group)),
       "import",
-      field("path", $.identifier),
-      repeat(seq(
+      field("path", path($.identifier)),
+      optional(seq(
         "::",
-        choice(
-          field("path", $.identifier),
-          seq(
-            "{",
-            comma_list("symbol", $.identifier),
-            "}",
-          ),
-        ),
+        "{",
+        comma_list("symbol", $.identifier),
+        "}",
       )),
       optional(seq(
         "as",
@@ -360,7 +383,7 @@ module.exports = grammar({
       $.postfix_expr,
       $.binary_expr,
 
-      $.identifier_path,
+      $.identifier_expr,
       $.index_expr,
       $.member_expr,
       $.call_expr,
@@ -380,13 +403,7 @@ module.exports = grammar({
     null_expr: $ => "null",
 
     struct_initializer: $ => seq(
-      field("type", $.identifier_path),
-      optional(seq(
-        "::",
-        "[",
-        comma_list("type_arg", $.type),
-        "]",
-      )),
+      field("type", identifier_path($.identifier, $.type, true)),
       "{",
       comma_list("field", $.field_initializer),
       "}",
@@ -452,6 +469,8 @@ module.exports = grammar({
       prec.left(12, seq(field("left", $.expr), choice("*", "/", "%"), field("right", $.expr))),
     ),
 
+    identifier_expr: $ => prec(15, identifier_path($.identifier, $.type, true)),
+
     index_expr: $ => prec(15, seq(
       field("expr", $.expr),
       "[",
@@ -467,12 +486,6 @@ module.exports = grammar({
 
     call_expr: $ => prec(15, seq(
       field("callee", $.expr),
-      optional(seq(
-        "::",
-        "[",
-        comma_list("type_arg", $.type),
-        "]",
-      )),
       "(",
       comma_list("arg", $.expr),
       ")",
@@ -514,7 +527,7 @@ module.exports = grammar({
 
     array_type: $ => seq(
       "[",
-      field("size", $.integer),
+      field("size", $.number),
       "]",
       field("element", $.type),
     ),
@@ -535,12 +548,7 @@ module.exports = grammar({
 
     identifier_type: $ => prec.left(seq(
       field("mut", optional("mut")),
-      $.identifier_path,
-      optional(seq(
-        "[",
-        comma_list("type_arg", $.type),
-        "]",
-      )),
+      field("path", identifier_path($.identifier, $.type, false)),
     )),
 
     // Attributes
@@ -615,14 +623,6 @@ module.exports = grammar({
     integer: $ => choice(binary_integer, hex_integer, unsigned_integer, signed_integer),
 
     identifier: $ => /[a-zA-Z_][a-zA-Z_0-9]*/,
-
-    identifier_path: $ => prec.left(seq(
-      $.identifier,
-      repeat(seq(
-        "::",
-        $.identifier,
-      )),
-    )),
 
     comment: $ => token(choice(
       seq("//", /.*/),
