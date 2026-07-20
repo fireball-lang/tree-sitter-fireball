@@ -12,7 +12,10 @@ function comma_list(field_name, rule) {
 
   return optional(seq(
     item,
-    repeat(item),
+    repeat(seq(
+      ",",
+      item,
+    )),
     optional(","),
   ))
 }
@@ -42,7 +45,7 @@ function identifier_path(identifier, type, typeParamsRequireTurbofish) {
     identifier,
     optional(seq(
       typeParamsRequireTurbofish ? seq(":", "[") : "[",
-      comma_list("", type),
+      comma_list("type_arg", type),
       "]",
     )),
   ))
@@ -71,7 +74,6 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$.expr, $.array_type],
   ],
 
   supertypes: $ => [
