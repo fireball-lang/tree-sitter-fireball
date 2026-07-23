@@ -310,6 +310,10 @@
           "named": true
         },
         {
+          "type": "repr_attribute",
+          "named": true
+        },
+        {
           "type": "test_attribute",
           "named": true
         }
@@ -1410,6 +1414,26 @@
     "fields": {}
   },
   {
+    "type": "repr_attribute",
+    "named": true,
+    "fields": {
+      "layout": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "C",
+            "named": false
+          },
+          {
+            "type": "Fireball",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "return",
     "named": true,
     "fields": {
@@ -1824,6 +1848,14 @@
     "named": false
   },
   {
+    "type": "C",
+    "named": false
+  },
+  {
+    "type": "Fireball",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -1970,6 +2002,10 @@
   },
   {
     "type": "pub",
+    "named": false
+  },
+  {
+    "type": "repr",
     "named": false
   },
   {

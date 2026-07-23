@@ -3959,6 +3959,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "repr_attribute"
+        },
+        {
+          "type": "SYMBOL",
           "name": "cfg_attribute"
         }
       ]
@@ -4026,6 +4030,40 @@
           "content": {
             "type": "SYMBOL",
             "name": "string"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "repr_attribute": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "repr"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "layout",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "Fireball"
+              },
+              {
+                "type": "STRING",
+                "value": "C"
+              }
+            ]
           }
         },
         {

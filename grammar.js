@@ -574,6 +574,7 @@ module.exports = grammar({
       $.test_attribute,
       $.extern_attribute,
       $.link_name_attribute,
+      $.repr_attribute,
       $.cfg_attribute,
     ),
 
@@ -594,6 +595,16 @@ module.exports = grammar({
       "link_name",
       "(",
       field("name", $.string),
+      ")",
+    ),
+
+    repr_attribute: $ => seq(
+      "repr",
+      "(",
+      field("layout", choice(
+        "Fireball",
+        "C",
+      )),
       ")",
     ),
 
