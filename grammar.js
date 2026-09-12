@@ -101,6 +101,7 @@ module.exports = grammar({
       $.enum,
       $.interface,
       $.impl,
+      $.const,
       $.global_var,
       $.func,
     ),
@@ -240,6 +241,20 @@ module.exports = grammar({
         "=",
         field("type", $.type),
       )),
+      ";",
+    ),
+
+    const: $ => seq(
+      field("attr_group", repeat($.attribute_group)),
+      optional("pub"),
+      "const",
+      field("name", $.identifier),
+      optional(seq(
+        ":",
+        field("type", $.type),
+      )),
+      "=",
+      field("value", $.expr),
       ";",
     ),
 
