@@ -263,8 +263,14 @@ module.exports = grammar({
       optional("pub"),
       "var",
       field("name", $.identifier),
-      ":",
-      field("type", $.type),
+      optional(seq(
+        ":",
+        field("type", $.type),
+      )),
+      optional(seq(
+        "=",
+        field("initializer", $.expr),
+      )),
       ";",
     ),
 
