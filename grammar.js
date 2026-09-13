@@ -186,7 +186,7 @@ module.exports = grammar({
       field("name", $.identifier),
       optional(seq(
         "=",
-        field("value", $.integer),
+        field("value", $.expr),
       )),
     ),
 

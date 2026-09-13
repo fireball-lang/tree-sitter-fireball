@@ -501,7 +501,7 @@
         "required": false,
         "types": [
           {
-            "type": "integer",
+            "type": "expr",
             "named": true
           }
         ]
@@ -1209,11 +1209,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "integer",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "interface",
