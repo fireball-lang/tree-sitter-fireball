@@ -207,6 +207,7 @@ module.exports = grammar({
       "{",
       repeat(choice(
         field("assoc_type", $.associated_type),
+        field("assoc_const", $.associated_const),
         field("func", $.func),
       )),
       "}",
@@ -228,6 +229,7 @@ module.exports = grammar({
       "{",
       repeat(choice(
         field("assoc_type", $.associated_type),
+        field("assoc_const", $.associated_const),
         field("func", $.func),
       )),
       "}",
@@ -240,6 +242,21 @@ module.exports = grammar({
       optional(seq(
         "=",
         field("type", $.type),
+      )),
+      ";",
+    ),
+
+    associated_const: $ => seq(
+      field("attr_group", repeat($.attribute_group)),
+      "const",
+      field("name", $.identifier),
+      optional(seq(
+        ":",
+        field("type", $.type),
+      )),
+      optional(seq(
+        "=",
+        field("value", $.expr),
       )),
       ";",
     ),

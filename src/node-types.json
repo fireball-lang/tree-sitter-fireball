@@ -284,6 +284,52 @@
     }
   },
   {
+    "type": "associated_const",
+    "named": true,
+    "fields": {
+      "attr_group": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_group",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "associated_type",
     "named": true,
     "fields": {
@@ -1072,6 +1118,16 @@
     "type": "impl",
     "named": true,
     "fields": {
+      "assoc_const": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "associated_const",
+            "named": true
+          }
+        ]
+      },
       "assoc_type": {
         "multiple": true,
         "required": false,
@@ -1214,6 +1270,16 @@
     "type": "interface",
     "named": true,
     "fields": {
+      "assoc_const": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "associated_const",
+            "named": true
+          }
+        ]
+      },
       "assoc_type": {
         "multiple": true,
         "required": false,

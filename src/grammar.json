@@ -991,6 +991,14 @@
               },
               {
                 "type": "FIELD",
+                "name": "assoc_const",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "associated_const"
+                }
+              },
+              {
+                "type": "FIELD",
                 "name": "func",
                 "content": {
                   "type": "SYMBOL",
@@ -1153,6 +1161,14 @@
                 },
                 {
                   "type": "FIELD",
+                  "name": "assoc_const",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "associated_const"
+                  }
+                },
+                {
+                  "type": "FIELD",
                   "name": "func",
                   "content": {
                     "type": "SYMBOL",
@@ -1211,6 +1227,88 @@
                   "content": {
                     "type": "SYMBOL",
                     "name": "type"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "associated_const": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "attr_group",
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "attribute_group"
+            }
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "const"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "type",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "type"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "="
+                },
+                {
+                  "type": "FIELD",
+                  "name": "value",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "expr"
                   }
                 }
               ]
