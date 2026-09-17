@@ -2764,6 +2764,14 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "FIELD",
+          "name": "expr",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expr"
+          }
+        },
+        {
           "type": "STRING",
           "value": "with"
         },

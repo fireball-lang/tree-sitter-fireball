@@ -2024,6 +2024,16 @@
     "type": "with_expr",
     "named": true,
     "fields": {
+      "expr": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      },
       "field": {
         "multiple": true,
         "required": false,

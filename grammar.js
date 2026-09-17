@@ -479,6 +479,7 @@ module.exports = grammar({
     ),
 
     with_expr: $ => seq(
+      field("expr", $.expr),
       "with",
       "{",
       comma_list("field", $.field_initializer),
