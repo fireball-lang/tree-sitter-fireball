@@ -57,8 +57,8 @@ const hex_integer = /0[xX][0-9a-fA-F_]+/
 const unsigned_integer = /[0-9_]+[uU]/
 const signed_integer = /[0-9_]+/
 
-const double = /[0-9_]+\.[0-9_]+/
-const float = /[0-9_]+\.[0-9_]+[fF]/
+const double = /[0-9_]+\.[0-9_]+([eE][+-]?[0-9_]+)?/
+const float = /[0-9_]+\.[0-9_]+([eE][+-]?[0-9_]+)?[fF]/
 
 const char = /'(?:[^'\\]|\\[^xX]|\\[xX][0-9a-fA-F]{2})'/
 const string = /"([^"\\]|\\.)*"/
