@@ -717,6 +717,7 @@ module.exports = grammar({
       field("layout", choice(
         "Fireball",
         "C",
+        "Packed",
         "Union",
       )),
       ")",
