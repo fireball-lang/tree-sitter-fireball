@@ -567,6 +567,12 @@ module.exports = grammar({
       field("expr", $.expr),
       ".",
       field("name", $.identifier),
+      optional(seq(
+        ":",
+        "[",
+        comma_list("type_arg", $.type),
+        "]",
+      )),
     )),
 
     call_expr: $ => prec(15, seq(

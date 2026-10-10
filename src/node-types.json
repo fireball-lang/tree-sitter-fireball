@@ -1409,6 +1409,16 @@
             "named": true
           }
         ]
+      },
+      "type_arg": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
       }
     }
   },
