@@ -442,6 +442,7 @@ module.exports = grammar({
       $.with_expr,
       $.struct_initializer,
       $.array_initializer,
+      $.tuple_initializer,
 
       $.sizeof,
       $.alignof,
@@ -497,6 +498,17 @@ module.exports = grammar({
       "{",
       comma_list("element", $.expr),
       "}",
+    ),
+
+    tuple_initializer: $ => seq(
+      "(",
+      field("value", $.expr),
+      repeat1(seq(
+        ",",
+        field("value", $.expr),
+      )),
+      optional(","),
+      ")",
     ),
 
     sizeof: $ => seq(
@@ -593,6 +605,7 @@ module.exports = grammar({
     type: $ => choice(
       $.primitive_type,
       $.array_type,
+      $.tuple_type,
       $.reference_type,
       $.pointer_type,
       $.func_type,
@@ -624,6 +637,12 @@ module.exports = grammar({
       field("size", $.number),
       "]",
       field("element", $.type),
+    ),
+
+    tuple_type: $ => seq(
+      "(",
+      comma_list("type", $.type),
+      ")",
     ),
 
     reference_type: $ => prec.left(0, seq(
