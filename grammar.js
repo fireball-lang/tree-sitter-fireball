@@ -571,7 +571,7 @@ module.exports = grammar({
     index_expr: $ => prec(15, seq(
       field("expr", $.expr),
       "[",
-      field("index", $.expr),
+      comma_list("index", $.expr),
       "]",
     )),
 

@@ -1263,8 +1263,8 @@
         ]
       },
       "index": {
-        "multiple": false,
-        "required": true,
+        "multiple": true,
+        "required": false,
         "types": [
           {
             "type": "expr",
