@@ -350,6 +350,7 @@ module.exports = grammar({
       $.expression,
       $.var,
       $.if,
+      $.match,
       $.while,
       $.for,
       $.return,
@@ -393,6 +394,22 @@ module.exports = grammar({
         field("if_false", $.stmt),
       )),
     )),
+
+    match: $ => seq(
+      "match",
+      "(",
+      field("value", $.expr),
+      ")",
+      "{",
+      comma_list("arm", $.arm),
+      "}",
+    ),
+
+    arm: $ => seq(
+      comma_list("pattern", $.expr),
+      "=>",
+      field("body", $.stmt),
+    ),
 
     while: $ => seq(
       "while",
