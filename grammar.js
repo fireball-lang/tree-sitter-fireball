@@ -401,7 +401,7 @@ module.exports = grammar({
       field("value", $.expr),
       ")",
       "{",
-      comma_list("arm", $.arm),
+      repeat(field("arm", $.arm)),
       "}",
     ),
 
