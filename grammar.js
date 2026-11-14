@@ -99,6 +99,7 @@ module.exports = grammar({
       $.type_alias,
       $.struct,
       $.enum,
+      $.union,
       $.interface,
       $.impl,
       $.const,
@@ -178,16 +179,45 @@ module.exports = grammar({
         field("type", $.type),
       )),
       "{",
-      comma_list("case", $.case),
+      comma_list("case", $.enum_case),
       "}",
     ),
 
-    case: $ => seq(
+    enum_case: $ => seq(
       field("name", $.identifier),
       optional(seq(
         "=",
         field("value", $.expr),
       )),
+    ),
+
+    union: $ => seq(
+      field("attr_group", repeat($.attribute_group)),
+      optional("pub"),
+      "union",
+      field("name", $.identifier),
+      optional(seq(
+        "[",
+        comma_list("type_param", $.type_param),
+        "]",
+      )),
+      "{",
+      repeat(field("case", $.union_case)),
+      "}",
+    ),
+
+    union_case: $ => seq(
+      field("name", $.identifier),
+      "{",
+      comma_list("field", $.union_case_field),
+      "}",
+      ";"
+    ),
+
+    union_case_field: $ => seq(
+      field("name", $.identifier),
+      ":",
+      field("type", $.type),
     ),
 
     interface: $ => seq(

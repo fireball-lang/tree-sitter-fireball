@@ -42,6 +42,10 @@
       {
         "type": "type_alias",
         "named": true
+      },
+      {
+        "type": "union",
+        "named": true
       }
     ]
   },
@@ -567,32 +571,6 @@
     }
   },
   {
-    "type": "case",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expr",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "cast_expr",
     "named": true,
     "fields": {
@@ -723,7 +701,7 @@
         "required": false,
         "types": [
           {
-            "type": "case",
+            "type": "enum_case",
             "named": true
           }
         ]
@@ -744,6 +722,32 @@
         "types": [
           {
             "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "enum_case",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expr",
             "named": true
           }
         ]
@@ -2069,6 +2073,104 @@
     }
   },
   {
+    "type": "union",
+    "named": true,
+    "fields": {
+      "attr_group": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_group",
+            "named": true
+          }
+        ]
+      },
+      "case": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "union_case",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type_param": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "type_param",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "union_case",
+    "named": true,
+    "fields": {
+      "field": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "union_case_field",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "union_case_field",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "var",
     "named": true,
     "fields": {
@@ -2563,6 +2665,10 @@
   },
   {
     "type": "u8",
+    "named": false
+  },
+  {
+    "type": "union",
     "named": false
   },
   {
