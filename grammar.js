@@ -747,6 +747,7 @@ module.exports = grammar({
       $.intrinsic_attribute,
       $.repr_attribute,
       $.cfg_attribute,
+      $.deprecated_attribute,
     ),
 
     required_attribute: $ => "required",
@@ -800,6 +801,15 @@ module.exports = grammar({
       "(",
       field("predicate", $.cfg_predicate),
       ")",
+    ),
+
+    deprecated_attribute: $ => seq(
+      "deprecated",
+      optional(seq(
+        "(",
+        field("message", $.string),
+        ")",
+      )),
     ),
 
     // Cfg Predicates

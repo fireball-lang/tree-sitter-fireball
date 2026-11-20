@@ -420,6 +420,10 @@
           "named": true
         },
         {
+          "type": "deprecated_attribute",
+          "named": true
+        },
+        {
           "type": "extern_attribute",
           "named": true
         },
@@ -681,6 +685,22 @@
     "type": "continue",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "deprecated_attribute",
+    "named": true,
+    "fields": {
+      "message": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "enum",
@@ -2485,6 +2505,10 @@
   },
   {
     "type": "continue",
+    "named": false
+  },
+  {
+    "type": "deprecated",
     "named": false
   },
   {
