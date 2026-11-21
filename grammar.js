@@ -208,9 +208,11 @@ module.exports = grammar({
 
     union_case: $ => seq(
       field("name", $.identifier),
-      "{",
-      comma_list("field", $.union_case_field),
-      "}",
+      optional(seq(
+        "{",
+        comma_list("field", $.union_case_field),
+        "}",
+      )),
       ";"
     ),
 
